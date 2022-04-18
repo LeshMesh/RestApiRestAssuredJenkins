@@ -1,15 +1,23 @@
 package guru.qa;
 
 import com.codeborne.selenide.Condition;
+import io.restassured.RestAssured;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Cookie;
 
 import static com.codeborne.selenide.Selenide.*;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 import static io.restassured.RestAssured.given;
+import static listeners.CustomAllureListener.withCustomTemplates;
 import static org.hamcrest.core.Is.is;
 
 public class DemoWebShopApiTest {
+
+    @BeforeAll
+    static void beforeAll() {
+        RestAssured.filters(withCustomTemplates());
+    }
 
     @Test
     void addWishlistTest() {
